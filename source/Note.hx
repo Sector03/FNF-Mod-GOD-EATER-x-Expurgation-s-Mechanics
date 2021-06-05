@@ -202,30 +202,30 @@ class Note extends FlxSprite
 
 				if (warning) {
 					frames = Paths.getSparrowAtlas('warningNote');
-					animation.addByPrefix('greenScroll', 'Green Arrow');
-					animation.addByPrefix('redScroll', 'Red Arrow');
-					animation.addByPrefix('blueScroll', 'Blue Arrow');
-					animation.addByPrefix('purpleScroll', 'Purple Arrow');
-					animation.addByPrefix('whiteScroll', 'Blue Arrow');
-					animation.addByPrefix('yellowScroll', 'Green Arrow');
-					animation.addByPrefix('violetScroll', 'Red Arrow');
-					animation.addByPrefix('blackScroll', 'Blue Arrow');
-					animation.addByPrefix('darkScroll', 'Purple Arrow');
+					animation.addByPrefix('greenScroll', 'warning');
+					animation.addByPrefix('redScroll', 'warning');
+					animation.addByPrefix('blueScroll', 'warning');
+					animation.addByPrefix('purpleScroll', 'warning');
+					animation.addByPrefix('whiteScroll', 'warning');
+					animation.addByPrefix('yellowScroll', 'warning');
+					animation.addByPrefix('violetScroll', 'warning');
+					animation.addByPrefix('blackScroll', 'warning');
+					animation.addByPrefix('darkScroll', 'warning');
 					noteData = -noteData;
 				}
 				if(burning){
 					if (daStage == 'sky')
 					{
 						frames = Paths.getSparrowAtlas('ALL_deathnotes');
-						animation.addByPrefix('greenScroll', 'warning');
-						animation.addByPrefix('redScroll', 'warning');
-						animation.addByPrefix('blueScroll', 'warning');
-						animation.addByPrefix('purpleScroll', 'warning');
-						animation.addByPrefix('whiteScroll', 'warning');
-						animation.addByPrefix('yellowScroll', 'warning');
-						animation.addByPrefix('violetScroll', 'warning');
-						animation.addByPrefix('blackScroll', 'warning');
-						animation.addByPrefix('darkScroll', 'warning');
+						animation.addByPrefix('greenScroll', 'Green Arrow');
+						animation.addByPrefix('redScroll', 'Red Arrow');
+						animation.addByPrefix('blueScroll', 'Blue Arrow');
+						animation.addByPrefix('purpleScroll', 'Purple Arrow');
+						animation.addByPrefix('whiteScroll', 'Blue Arrow');
+						animation.addByPrefix('yellowScroll', 'Green Arrow');
+						animation.addByPrefix('violetScroll', 'Red Arrow');
+						animation.addByPrefix('blackScroll', 'Blue Arrow');
+						animation.addByPrefix('darkScroll', 'Purple Arrow');
 						x -= 105;
 					}
 					else
