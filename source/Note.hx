@@ -17,6 +17,7 @@ class Note extends FlxSprite
 
 	public var mustPress:Bool = false;
 	public var burning:Bool = false;
+	public var warning:Bool = false;
 	public var noteData:Int = 0;
 	public var canBeHit:Bool = false;
 	public var tooLate:Bool = false;
@@ -44,7 +45,7 @@ class Note extends FlxSprite
 
 	public static var tooMuch:Float = 30;
 
-	public function new(strumTime:Float, _noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
+	public function new(strumTime:Float, _noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?_mustPress:Bool = false)
 	{
 		swagWidth = 160 * 0.7; //factor not the same as noteScale
 		noteScale = 0.7;
@@ -78,9 +79,14 @@ class Note extends FlxSprite
 		y -= 2000;
 
 		burning = _noteData > 8;
+		warning = _noteData < 0;
 
 		if(isSustainNote && prevNote.burning) { 
 			burning = true;
+		}
+
+		if(isSustainNote && prevNote.warning) { 
+			warning = true;
 		}
 
 		noteData = _noteData % 9;
@@ -123,52 +129,103 @@ class Note extends FlxSprite
 				updateHitbox();
 
 			default:
-				frames = Paths.getSparrowAtlas('NOTE_assets');
+				if (!_mustPress) 
+				{
+					frames = Paths.getSparrowAtlas('tabi_NOTE_assets');
 
-				animation.addByPrefix('greenScroll', 'green0');
-				animation.addByPrefix('redScroll', 'red0');
-				animation.addByPrefix('blueScroll', 'blue0');
-				animation.addByPrefix('purpleScroll', 'purple0');
-				animation.addByPrefix('whiteScroll', 'white0');
-				animation.addByPrefix('yellowScroll', 'yellow0');
-				animation.addByPrefix('violetScroll', 'violet0');
-				animation.addByPrefix('blackScroll', 'black0');
-				animation.addByPrefix('darkScroll', 'dark0');
+					animation.addByPrefix('greenScroll', 'green0');
+					animation.addByPrefix('redScroll', 'red0');
+					animation.addByPrefix('blueScroll', 'blue0');
+					animation.addByPrefix('purpleScroll', 'purple0');
+					animation.addByPrefix('whiteScroll', 'white0');
+					animation.addByPrefix('yellowScroll', 'yellow0');
+					animation.addByPrefix('violetScroll', 'violet0');
+					animation.addByPrefix('blackScroll', 'black0');
+					animation.addByPrefix('darkScroll', 'dark0');
 
 
-				animation.addByPrefix('purpleholdend', 'pruple end hold');
-				animation.addByPrefix('greenholdend', 'green hold end');
-				animation.addByPrefix('redholdend', 'red hold end');
-				animation.addByPrefix('blueholdend', 'blue hold end');
-				animation.addByPrefix('whiteholdend', 'white hold end');
-				animation.addByPrefix('yellowholdend', 'yellow hold end');
-				animation.addByPrefix('violetholdend', 'violet hold end');
-				animation.addByPrefix('blackholdend', 'black hold end');
-				animation.addByPrefix('darkholdend', 'dark hold end');
+					animation.addByPrefix('purpleholdend', 'pruple end hold');
+					animation.addByPrefix('greenholdend', 'green hold end');
+					animation.addByPrefix('redholdend', 'red hold end');
+					animation.addByPrefix('blueholdend', 'blue hold end');
+					animation.addByPrefix('whiteholdend', 'white hold end');
+					animation.addByPrefix('yellowholdend', 'yellow hold end');
+					animation.addByPrefix('violetholdend', 'violet hold end');
+					animation.addByPrefix('blackholdend', 'black hold end');
+					animation.addByPrefix('darkholdend', 'dark hold end');
 
-				animation.addByPrefix('purplehold', 'purple hold piece');
-				animation.addByPrefix('greenhold', 'green hold piece');
-				animation.addByPrefix('redhold', 'red hold piece');
-				animation.addByPrefix('bluehold', 'blue hold piece');
-				animation.addByPrefix('whitehold', 'white hold piece');
-				animation.addByPrefix('yellowhold', 'yellow hold piece');
-				animation.addByPrefix('violethold', 'violet hold piece');
-				animation.addByPrefix('blackhold', 'black hold piece');
-				animation.addByPrefix('darkhold', 'dark hold piece');
+					animation.addByPrefix('purplehold', 'purple hold piece');
+					animation.addByPrefix('greenhold', 'green hold piece');
+					animation.addByPrefix('redhold', 'red hold piece');
+					animation.addByPrefix('bluehold', 'blue hold piece');
+					animation.addByPrefix('whitehold', 'white hold piece');
+					animation.addByPrefix('yellowhold', 'yellow hold piece');
+					animation.addByPrefix('violethold', 'violet hold piece');
+					animation.addByPrefix('blackhold', 'black hold piece');
+					animation.addByPrefix('darkhold', 'dark hold piece');
+				}
+				else
+				{
+					frames = Paths.getSparrowAtlas('NOTE_assets');
 
+					animation.addByPrefix('greenScroll', 'green0');
+					animation.addByPrefix('redScroll', 'red0');
+					animation.addByPrefix('blueScroll', 'blue0');
+					animation.addByPrefix('purpleScroll', 'purple0');
+					animation.addByPrefix('whiteScroll', 'white0');
+					animation.addByPrefix('yellowScroll', 'yellow0');
+					animation.addByPrefix('violetScroll', 'violet0');
+					animation.addByPrefix('blackScroll', 'black0');
+					animation.addByPrefix('darkScroll', 'dark0');
+
+
+					animation.addByPrefix('purpleholdend', 'pruple end hold');
+					animation.addByPrefix('greenholdend', 'green hold end');
+					animation.addByPrefix('redholdend', 'red hold end');
+					animation.addByPrefix('blueholdend', 'blue hold end');
+					animation.addByPrefix('whiteholdend', 'white hold end');
+					animation.addByPrefix('yellowholdend', 'yellow hold end');
+					animation.addByPrefix('violetholdend', 'violet hold end');
+					animation.addByPrefix('blackholdend', 'black hold end');
+					animation.addByPrefix('darkholdend', 'dark hold end');
+
+					animation.addByPrefix('purplehold', 'purple hold piece');
+					animation.addByPrefix('greenhold', 'green hold piece');
+					animation.addByPrefix('redhold', 'red hold piece');
+					animation.addByPrefix('bluehold', 'blue hold piece');
+					animation.addByPrefix('whitehold', 'white hold piece');
+					animation.addByPrefix('yellowhold', 'yellow hold piece');
+					animation.addByPrefix('violethold', 'violet hold piece');
+					animation.addByPrefix('blackhold', 'black hold piece');
+					animation.addByPrefix('darkhold', 'dark hold piece');
+				}
+
+				if (warning) {
+					frames = Paths.getSparrowAtlas('warningNote');
+					animation.addByPrefix('greenScroll', 'Green Arrow');
+					animation.addByPrefix('redScroll', 'Red Arrow');
+					animation.addByPrefix('blueScroll', 'Blue Arrow');
+					animation.addByPrefix('purpleScroll', 'Purple Arrow');
+					animation.addByPrefix('whiteScroll', 'Blue Arrow');
+					animation.addByPrefix('yellowScroll', 'Green Arrow');
+					animation.addByPrefix('violetScroll', 'Red Arrow');
+					animation.addByPrefix('blackScroll', 'Blue Arrow');
+					animation.addByPrefix('darkScroll', 'Purple Arrow');
+					noteData = -noteData;
+				}
 				if(burning){
 					if (daStage == 'sky')
 					{
 						frames = Paths.getSparrowAtlas('ALL_deathnotes');
-						animation.addByPrefix('greenScroll', 'Green Arrow');
-						animation.addByPrefix('redScroll', 'Red Arrow');
-						animation.addByPrefix('blueScroll', 'Blue Arrow');
-						animation.addByPrefix('purpleScroll', 'Purple Arrow');
-						animation.addByPrefix('whiteScroll', 'Blue Arrow');
-						animation.addByPrefix('yellowScroll', 'Green Arrow');
-						animation.addByPrefix('violetScroll', 'Red Arrow');
-						animation.addByPrefix('blackScroll', 'Blue Arrow');
-						animation.addByPrefix('darkScroll', 'Purple Arrow');
+						animation.addByPrefix('greenScroll', 'warning');
+						animation.addByPrefix('redScroll', 'warning');
+						animation.addByPrefix('blueScroll', 'warning');
+						animation.addByPrefix('purpleScroll', 'warning');
+						animation.addByPrefix('whiteScroll', 'warning');
+						animation.addByPrefix('yellowScroll', 'warning');
+						animation.addByPrefix('violetScroll', 'warning');
+						animation.addByPrefix('blackScroll', 'warning');
+						animation.addByPrefix('darkScroll', 'warning');
 						x -= 165;
 					}
 					else
