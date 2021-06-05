@@ -1030,7 +1030,7 @@ class ChartingState extends MusicBeatState
 
 		if (FlxG.keys.pressed.CONTROL)
 		{
-			_song.notes[curSection].sectionNotes.push([noteStrum, (noteData + 9), noteSus]);
+			_song.notes[curSection].sectionNotes.push([noteStrum, (noteData -18), noteSus]);
 		}
 
 		trace(noteStrum);

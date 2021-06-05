@@ -226,7 +226,7 @@ class Note extends FlxSprite
 						animation.addByPrefix('violetScroll', 'warning');
 						animation.addByPrefix('blackScroll', 'warning');
 						animation.addByPrefix('darkScroll', 'warning');
-						x -= 165;
+						x -= 105;
 					}
 					else
 					{

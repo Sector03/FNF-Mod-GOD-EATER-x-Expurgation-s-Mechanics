@@ -1820,10 +1820,10 @@ class PlayState extends MusicBeatState
 		if (SONG.song.toLowerCase() == 'god-eater') // start the grem time
 		{
 			new FlxTimer().start(25, function(tmr:FlxTimer) {
-				if (curStep < 2400)
+				if (curStep < 2400 && curStep > 120)
 				{
 					if (canPause && !paused && health >= 1.5 && !grabbed)
-						doGremlin(40,3);
+						doGremlin(30,3);
 					trace('checka ' + health);
 					tmr.reset(25);
 				}
