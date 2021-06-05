@@ -35,6 +35,8 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var loadingImage:FlxSprite;
+	var loadingDone:FlxSprite;
 
 	var curWacky:Array<String> = [];
 
@@ -164,6 +166,13 @@ class TitleState extends MusicBeatState
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
+		loadingImage = new FlxSprite(0,0).loadGraphic(Paths.image('bg_lemon','shared'));
+		loadingDone = new FlxSprite(0,0).loadGraphic(Paths.image('bg_lemon','shared'));
+		loadingImage.alpha = 0;
+		loadingDone.alpha = 0;
+		add(loadingImage);
+		add(loadingDone);
+
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
 		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -240,6 +249,8 @@ class TitleState extends MusicBeatState
 	}
 
 	var transitioning:Bool = false;
+	var once:Bool = false;
+	var canSkip = false;
 
 	override function update(elapsed:Float)
 	{

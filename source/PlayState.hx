@@ -1903,7 +1903,7 @@ class PlayState extends MusicBeatState
 				else
 					oldNote = null;
 
-				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
+				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote, false, gottaHitNote);
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
 
@@ -1916,7 +1916,7 @@ class PlayState extends MusicBeatState
 				{
 					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true);
+					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true, gottaHitNote);
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
 
@@ -2726,7 +2726,15 @@ class PlayState extends MusicBeatState
 	
 						if (SONG.needsVoices)
 							vocals.volume = 1;
-	
+
+						if (daNote.isSustainNote)
+						{
+							health -= 0.00025;
+						} else {
+							//health -= 0.04;
+							health -= 0.01;
+						}
+
 						daNote.kill();
 						notes.remove(daNote, true);
 						daNote.destroy();
@@ -2753,13 +2761,21 @@ class PlayState extends MusicBeatState
 						}
 						else
 						{
-							if (!daNote.burning && daNote.mustPress)
+							if (daNote.warning) 
 							{
-							health -= 0.075;
-							totalDamageTaken += 0.075;
-							vocals.volume = 0;
-							if (theFunne)
-								noteMiss(daNote.noteData);
+								health -= 0.4;
+								totalDamageTaken += 0.075;
+								vocals.volume = 0;
+								if (theFunne)
+									noteMiss(daNote.noteData);
+							}
+							else if (!daNote.burning && daNote.mustPress)
+							{
+								health -= 0.075;
+								totalDamageTaken += 0.075;
+								vocals.volume = 0;
+								if (theFunne)
+									noteMiss(daNote.noteData);
 							}
 						}
 	
