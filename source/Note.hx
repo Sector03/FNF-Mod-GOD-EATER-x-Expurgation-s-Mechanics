@@ -217,15 +217,15 @@ class Note extends FlxSprite
 					if (daStage == 'sky')
 					{
 						frames = Paths.getSparrowAtlas('ALL_deathnotes');
-						animation.addByPrefix('greenScroll', 'warning');
-						animation.addByPrefix('redScroll', 'warning');
-						animation.addByPrefix('blueScroll', 'warning');
-						animation.addByPrefix('purpleScroll', 'warning');
-						animation.addByPrefix('whiteScroll', 'warning');
-						animation.addByPrefix('yellowScroll', 'warning');
-						animation.addByPrefix('violetScroll', 'warning');
-						animation.addByPrefix('blackScroll', 'warning');
-						animation.addByPrefix('darkScroll', 'warning');
+						animation.addByPrefix('greenScroll', 'Green Arrow');
+						animation.addByPrefix('redScroll', 'Red Arrow');
+						animation.addByPrefix('blueScroll', 'Blue Arrow');
+						animation.addByPrefix('purpleScroll', 'Purple Arrow');
+						animation.addByPrefix('whiteScroll', 'White Arrow');
+						animation.addByPrefix('yellowScroll', 'Yellow Arrow');
+						animation.addByPrefix('violetScroll', 'Voilet Arrow');
+						animation.addByPrefix('blackScroll', 'Black Arrow');
+						animation.addByPrefix('darkScroll', 'Dark Arrow');
 						x -= 105;
 					}
 					else

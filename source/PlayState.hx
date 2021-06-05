@@ -1823,7 +1823,7 @@ class PlayState extends MusicBeatState
 				if (curStep < 2400 && curStep > 120)
 				{
 					if (canPause && !paused && health >= 1.5 && !grabbed)
-						doGremlin(30,3);
+						doGremlin(60,3);
 					trace('checka ' + health);
 					tmr.reset(25);
 				}
