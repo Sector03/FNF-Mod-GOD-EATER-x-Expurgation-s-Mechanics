@@ -3395,9 +3395,9 @@ class PlayState extends MusicBeatState
 										shouldBeDead = true;
 										FlxG.sound.play(Paths.sound('death'));
 									}
+								}
 								else
 									goodNoteHit(coolNote);
-								}
 							}
 						}
 						else if (possibleNotes[0].noteData == possibleNotes[1].noteData)
